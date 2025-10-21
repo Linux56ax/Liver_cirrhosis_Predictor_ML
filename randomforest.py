@@ -27,4 +27,4 @@ print("✅ Model training completed!")
 #Save trained model and encoders
 joblib.dump(rf, r"C:\project\Liver_cirrhosis_Predictor_ML\model\liver_random_forest.pkl")
 joblib.dump(label_encoders, r"C:\project\Liver_cirrhosis_Predictor_ML\model\label_encoders.pkl")
-print("💾 Model and encoders saved successfully!")
+print("Model and encoders saved successfully!")
