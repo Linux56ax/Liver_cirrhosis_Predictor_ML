@@ -11,7 +11,7 @@ encoder_path = r"C:\project\Liver_cirrhosis_Predictor_ML\model\label_encoders.pk
 output_path = r"C:\project\Liver_cirrhosis_Predictor_ML\results\evaluation_results.csv"
 
 #Load test dataset
-test_data = pd.read_csv(test_path)
+test_data = pd.DataFrame(test_path)
 
 #Split into features (X) and target (y)
 X_test = test_data.drop(columns=["Stage"])
