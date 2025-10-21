@@ -22,7 +22,7 @@ for col in X_train.select_dtypes(include="object").columns:
 #Train Random Forest model
 rf = RandomForestClassifier(n_estimators=100, random_state=42)
 rf.fit(X_train, y_train)
-print("✅ Model training completed!")
+print("Model training completed!")
 
 #Save trained model and encoders
 joblib.dump(rf, r"C:\project\Liver_cirrhosis_Predictor_ML\model\liver_random_forest.pkl")
