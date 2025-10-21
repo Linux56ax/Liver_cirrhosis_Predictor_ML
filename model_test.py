@@ -11,7 +11,7 @@ encoder_path = r"C:\project\Liver_cirrhosis_Predictor_ML\model\label_encoders.pk
 output_path = r"C:\project\Liver_cirrhosis_Predictor_ML\results\evaluation_results.csv"
 
 #Load test dataset
-test_data = pd.DataFrame(test_path)
+test_data = pd.read_csv(test_path)
 
 #Split into features (X) and target (y)
 X_test = test_data.drop(columns=["Stage"])
@@ -29,13 +29,21 @@ for col in X_test.select_dtypes(include="object").columns:
 #Make predictions
 y_pred = rf.predict(X_test)
 
-#Evaluate model performance
-print("Classification Report:\n")
-print(classification_report(y_test, y_pred))
 
-print("\nConfusion Matrix:\n")
-print(confusion_matrix(y_test, y_pred))
+y_test_codes = y_test.astype('category').cat.codes
+y_pred_codes = pd.Series(y_pred).astype('category').cat.codes
 
+# Scatter plot
+plt.figure(figsize=(8,6))
+plt.scatter(y_test_codes, y_pred_codes, color='blue', alpha=0.7)
+plt.plot([y_test_codes.min(), y_test_codes.max()],
+         [y_test_codes.min(), y_test_codes.max()], 'r--', label='Perfect Prediction')
+plt.xlabel('y_test (Actual Stage)')
+plt.ylabel('y_pred (Predicted Stage)')
+plt.title('Actual vs Predicted Stages')
+plt.legend()
+plt.grid(True)
+plt.show()
 
 
 # Compute metrics
