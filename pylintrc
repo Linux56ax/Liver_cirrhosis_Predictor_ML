@@ -1,0 +1,29 @@
+[MASTER]
+ignore=venv, .git, __pycache__
+load-plugins=
+
+[MESSAGES CONTROL]
+# disable some messages you deem not relevant
+disable=
+    missing-docstring,
+    too-few-public-methods,
+    duplicate-code
+
+[FORMAT]
+max-line-length=100
+good-names=i,j,k,_,df,X,y
+
+[DESIGN]
+max-args=5
+max-locals=15
+max-branches=12
+max-statements=50
+
+[BASIC]
+variable-rgx=[a-z_][a-z0-9_]{0,30}$
+argument-rgx=[a-z_][a-z0-9_]{0,30}$
+function-rgx=[a-z_][a-z0-9_]{2,30}$
+class-rgx=[A-Z_][a-zA-Z0-9]+$
+
+[REPORTS]
+output-format=colorized
