@@ -22,16 +22,16 @@ df = df.drop(columns=["N_Days", "Status"])
 X = df.drop(columns=["Stage"])
 y = df["Stage"]
 
-# 2️⃣ Identify column types
+# Identify column types
 categorical_cols = X.select_dtypes(include=["object"]).columns
 numerical_cols = X.select_dtypes(include=["int64", "float64"]).columns
 
-# 3️⃣ Split dataset
+#  Split dataset
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# 4️⃣ Define preprocessing
+#  Define preprocessing
 preprocessor = ColumnTransformer(
     transformers=[
         ("num", StandardScaler(), numerical_cols),  # scale numeric features
@@ -39,22 +39,22 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# 5️⃣ Build pipeline (preprocessing + Random Forest)
+#  Build pipeline (preprocessing + Random Forest)
 pipeline = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("classifier", RandomForestClassifier(n_estimators=100, random_state=42))
 ])
 
-# 6️⃣ Train the model
+#  Train the model
 pipeline.fit(X_train, y_train)
-print("✅ Model training completed!")
+print("Model training completed!")
 
-# 7️⃣ Evaluate performance
+# Evaluate performance
 y_pred = pipeline.predict(X_test)
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
 
-# 8️⃣ Save the full pipeline
+#Save the full pipeline
 joblib.dump(pipeline, "C:\project\Liver_cirrhosis_Predictor_ML\model1\liver_pipeline.pkl")
 print("\n💾 Pipeline saved successfully as 'liver_pipeline.pkl'")
 
